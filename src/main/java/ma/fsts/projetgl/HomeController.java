@@ -11,26 +11,33 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class HomeController {
 
-    @RequestMapping(value = "/",method = {RequestMethod.GET,RequestMethod.POST})
+    @RequestMapping(value = "/")
     public String home(HttpSession session){
         String user_id = (String) session.getAttribute("user_id");
         if(user_id == null) return "/Login";
-        System.out.println("User visited Home Page with id=");
+        System.out.println("User visited Home Page with id=" + user_id);
+        return "index.jsp";
+    }
+
+    @RequestMapping("Logout")
+    public String logout(HttpSession session){
+        String user_id = (String) session.getAttribute("user_id");
         session.removeAttribute("user_id");
-        return "index.html";
+        System.out.println(user_id + " is logout");
+        return "redirect:/Login";
     }
 
     @RequestMapping("/Login")
     public ModelAndView login(){
         ModelAndView mv = new ModelAndView("login.html");
-        System.out.println("User will try to login");
+        System.out.println("User trying to login");
         return mv;
     }
 
     @PostMapping("/Authentication")
-    public String Authentication(HttpSession session){
-        session.setAttribute("user_id","1");
-        System.out.println("User authenticated as : ");
+    public String Authentication(String username,String password,HttpSession session){
+        session.setAttribute("user_id",username);
+        System.out.println("User authenticated as : " + username + "_" + password);
         return "redirect:/";
     }
 }
