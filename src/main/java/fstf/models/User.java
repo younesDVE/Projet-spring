@@ -1,0 +1,54 @@
+package fstf.models;
+
+import javax.persistence.*;
+import java.io.Serializable;
+
+
+@Entity
+public class User implements Serializable {
+
+    @Id
+    private String user_id;
+    private String nom;
+    private String prenom;
+
+    @OneToOne(cascade = CascadeType.ALL, optional = false)
+    @PrimaryKeyJoinColumn(name = "user_id", referencedColumnName = "account_id")
+    private Account account;
+
+
+    public User() {
+    }
+
+    public String getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+}
