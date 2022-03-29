@@ -51,6 +51,7 @@ public class HomeController {
     @RequestMapping("Logout")
     public String logout(HttpSession session){
         session.removeAttribute("user");
+        System.out.println("User Loged out");
         return "redirect:/Login";
     }
 

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" action="AddAccount">
+
+    <table>
+        <tr>
+            <td>CIN</td><td><input type="text" name="account_id"></td>
+        </tr>
+        <tr>
+            <td>E-Mail</td><td><input type="email" name="email"></td>
+        </tr>
+        <tr>
+            <td>Password</td><td><input type="password" name="password"></td>
+        </tr>
+        <tr>
+            <td>Role</td>
+            <td>
+                <select name="role">
+                    <option value="1">Responsable des resources</option>
+                    <option value="2">Service Maintenance</option>
+                    <option value="3">Personal</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+    <button type="submit" name="action" value="addAccount">Suivant</button>
+</form>
+</body>
+</html>

@@ -5,6 +5,7 @@ import java.io.Serializable;
 
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class User implements Serializable {
 
     @Id
@@ -50,5 +51,15 @@ public class User implements Serializable {
 
     public void setAccount(Account account) {
         this.account = account;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "user_id='" + user_id + '\'' +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", account=" + account +
+                '}';
     }
 }
