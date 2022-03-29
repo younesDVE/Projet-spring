@@ -26,7 +26,7 @@ public class HomeController {
       a.setAccount_id("M123456");
 
       User u = new User();
-      u.setNom("NACHID-IDRISSI");
+      u.setNom("IDRISSI");
       u.setPrenom("YOUNESS");
       u.setUser_id("M123456");
 
