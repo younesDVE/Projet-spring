@@ -9,13 +9,13 @@ import java.io.Serializable;
 public class User implements Serializable {
 
     @Id
-    private String user_id;
-    private String nom;
-    private String prenom;
+    String user_id;
+    String nom;
+    String prenom;
 
     @OneToOne(cascade = CascadeType.ALL, optional = false)
     @PrimaryKeyJoinColumn(name = "user_id", referencedColumnName = "account_id")
-    private Account account;
+    Account account;
 
 
     public User() {

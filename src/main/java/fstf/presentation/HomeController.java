@@ -16,7 +16,7 @@ public class HomeController {
     @Autowired
     AccountManager account_manager;
 
-    @RequestMapping("InitMasterAccount")
+    @RequestMapping("Init")
     @ResponseBody
     public String ima(){
       Account a = new Account();
@@ -37,15 +37,19 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/")
-    public String home(HttpSession session){
+    public ModelAndView home(HttpSession session){
+        ModelAndView mv = new ModelAndView("index.jsp");
         User user = (User) session.getAttribute("user");
-        if(user == null) return "/Login";
+        if(user == null){
+            mv.setViewName("/Login");
+            return mv;
+        }
         int role = user.getAccount().getRole();
         System.out.println("User visited Home Page with id=" + user.getAccount().getEmail());
 
-        if(role == 1) return "responsable/index.jsp";
-        if(role == 2) return "personnel/index.jsp";
-        return "index.jsp";
+        if(role == 1) mv.setViewName("responsable/index.jsp");
+        if(role == 2) mv.setViewName("personnel/index.jsp");
+        return mv;
     }
 
     @RequestMapping("Logout")

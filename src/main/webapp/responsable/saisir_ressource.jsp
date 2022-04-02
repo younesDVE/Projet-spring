@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="responsable/script.js"></script>
+    <script src="script.js"></script>
 </head>
 <body>
 <form method="post" action="addRessource" onsubmit="check(this)">

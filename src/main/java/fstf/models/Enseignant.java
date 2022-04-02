@@ -6,11 +6,24 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Adminstratif extends User{
+public class Enseignant extends User{
+
+    @ManyToOne(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "lab",referencedColumnName = "nom")
+    Lab lab;
 
     @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "department",referencedColumnName = "name")
     Department department;
+
+
+    public Lab getLab() {
+        return lab;
+    }
+
+    public void setLab(Lab lab) {
+        this.lab = lab;
+    }
 
     public Department getDepartment() {
         return department;
@@ -22,8 +35,9 @@ public class Adminstratif extends User{
 
     @Override
     public String toString() {
-        return "Adminstratif{" +
-                "department=" + department +
+        return "Enseignant{" +
+                "lab=" + lab +
+                ", department=" + department +
                 ", user_id='" + user_id + '\'' +
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +

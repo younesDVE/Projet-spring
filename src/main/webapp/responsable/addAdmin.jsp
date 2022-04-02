@@ -5,15 +5,11 @@
     <title>Title</title>
 </head>
 <body>
-<form method="post" action="${action}">
+<form method="post" action="AddDepartment">
     <table>
         <tr>
-            <td>Nom</td>
-            <td><input type="text" name="nom"></td>
-        </tr>
-        <tr>
-            <td>Prenom</td>
-            <td><input type="text" name="prenom"></td>
+            <td>Department</td>
+            <td><input type="text" name="name"></td>
         </tr>
     </table>
     <button type="submit" name="action" value="addUser">Valider</button>
