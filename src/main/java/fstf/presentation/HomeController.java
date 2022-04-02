@@ -30,7 +30,7 @@ public class HomeController {
       u.setPrenom("YOUNESS");
       u.setUser_id("M123456");
 
-      if(account_manager.addAccount(u,a))
+      if(account_manager.add(u,a))
           return "Account created successfully";
       else
           return "Failed to creat account!";

@@ -15,7 +15,7 @@ public class AccountManager {
     @Autowired
     private UserDAO u_dao;
 
-    public boolean addAccount(User u, Account a){
+    public boolean add(User u, Account a){
         u.setAccount(a);
         a_dao.save(a);
         u_dao.save(u);

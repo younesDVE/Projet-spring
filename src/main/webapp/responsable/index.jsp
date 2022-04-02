@@ -11,5 +11,7 @@ Hello ${user.getNom()} <a href="Logout">logout</a>
 <br>
 
 <a href="/AddAccount">Ajouter Compte</a>
+
+<a href="/SaisirRessource">Saisir Ressource</a>
 </body>
 </html>
