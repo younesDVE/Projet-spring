@@ -3,10 +3,7 @@ package fstf.presentation;
 import fstf.business.AccountManager;
 import fstf.business.FournisseurManager;
 import fstf.business.RessourceManager;
-import fstf.models.Account;
-import fstf.models.Fournisseur;
-import fstf.models.Ressource;
-import fstf.models.User;
+import fstf.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -74,30 +71,53 @@ public class Responsable {
 
     @PostMapping("addRessource")
     public ModelAndView addRessource(Ressource r,String nom_soc,HttpSession session){
-        ModelAndView mv = new ModelAndView("responsable/saisir_ressource.jsp");
+        ModelAndView mv = new ModelAndView();
         Fournisseur f = fournisseur_manager.findById(nom_soc);
-        if(f==null){
+        r.setFr(f);
+        session.setAttribute("ressource",r);
+        if(f==null){//fournisseur ne se trouve pas dans la base des données
             session.setAttribute("ressource",r);
             mv.addObject("nom_soc",nom_soc);
             mv.setViewName("responsable/ajouter_fournisseur.jsp");
         }else{
-            r.setFr(f);
-            ressource_manager.add(r);
-            mv.setViewName("responsable/index.jsp");
+            if(r.getType().equals("I")) mv.setViewName("responsable/ajouter_impremente.jsp");
+            else mv.setViewName("responsable/ajouter_ordinateur.jsp");
         }
-
         System.out.println(r + "\n" + nom_soc + ":" + nom_soc.split(",").length);
         return mv;
     }
 
     @PostMapping("AddFournisseur")
-    public String addFournisseur(Fournisseur f,HttpSession session){
+    public ModelAndView addFournisseur(Fournisseur f,HttpSession session){
+        ModelAndView mv = new ModelAndView();
         Ressource r = (Ressource) session.getAttribute("ressource");
         fournisseur_manager.add(f);
         if(r!=null){
             r.setFr(f);
-            ressource_manager.add(r);
+            session.setAttribute("ressource",r);
+            if(r.getType().equals("I")) mv.setViewName("responsable/ajouter_impremente.jsp");
+            else mv.setViewName("responsable/ajouter_ordinateur.jsp");
         }
+        return mv;
+    }
+
+    @PostMapping("AddImprimente")
+    public String AddImprimente(Imprimente i,HttpSession session){
+        Ressource r = (Ressource) session.getAttribute("ressource");
+        i.copy(r);
+        session.removeAttribute("ressource");
+        ressource_manager.add(i);
+        System.out.println(i);
+        return "responsable/index.jsp";
+    }
+
+     @PostMapping("AddOrdinateur")
+    public String addAddOrdinateur(Ordinateur o,HttpSession session){
+        Ressource r = (Ressource) session.getAttribute("ressource");
+        o.copy(r);
+        session.removeAttribute("ressource");
+        ressource_manager.add(o);
+        System.out.println(o);
         return "responsable/index.jsp";
     }
 }

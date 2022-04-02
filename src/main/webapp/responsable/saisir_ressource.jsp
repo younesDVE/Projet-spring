@@ -11,15 +11,27 @@
     <table>
         <tr>
             <td>Code</td>
-            <td><input type="text" name="code"></td>
+            <td><input type="text" name="code" required></td>
+        </tr>
+        <tr>
+            <td>Marque</td><td><input type="text"  name="marque" required></td>
         </tr>
         <tr>
             <td>Date livraison</td>
-            <td><input type="date" name="date_liv"></td>
+            <td><input type="date" name="date_liv" required></td>
         </tr>
         <tr>
             <td>Duree garantis (en mois)</td>
             <td><input type="number" name="duree_gar" value="6"></td>
+        </tr>
+        <tr>
+            <td>Type ressource</td>
+            <td>
+                <select name="type">
+                    <option value="O">Ordinateur</option>
+                    <option value="I">Imprimente</option>
+                </select>
+            </td>
         </tr>
         <tr>
             <td>Fournisseur</td>
@@ -31,13 +43,13 @@
                     </c:forEach>
                 </select>
                 <div id="nom_soc" style="display:inline">
-                    ou  <input type="text" name="nom_soc" >
+                    ou  <input type="text" name="nom_soc" required>
                 </div>
 
             </td>
         </tr>
     </table>
-    <button type="submit" >Valider</button>
+    <button type="submit" >Next</button>
 </form>
 </body>
 </html>

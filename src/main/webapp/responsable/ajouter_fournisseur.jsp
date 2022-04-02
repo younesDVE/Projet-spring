@@ -17,7 +17,7 @@
             <td>Lieu</td><td><input type="text" name="address"></td>
         </tr>
     </table>
-    <button type="submit">Valider</button>
+    <button type="submit">Next</button>
 </form>
 </body>
 </html>

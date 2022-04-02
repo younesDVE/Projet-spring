@@ -1,7 +1,6 @@
 package fstf.business;
 
 import fstf.doa.RessourceDAO;
-import fstf.models.Fournisseur;
 import fstf.models.Ressource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
