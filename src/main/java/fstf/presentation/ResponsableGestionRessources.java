@@ -1,9 +1,6 @@
 package fstf.presentation;
 
-import fstf.business.AffecationManager;
-import fstf.business.DepartmentManager;
-import fstf.business.FournisseurManager;
-import fstf.business.RessourceManager;
+import fstf.business.*;
 import fstf.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,9 +22,12 @@ public class ResponsableGestionRessources {
     @Autowired
     DepartmentManager department_manager;
 
-
     @Autowired
     AffecationManager affecation_manager;
+
+
+    @Autowired
+    AccountManager account_manager;
 
     @RequestMapping("SaisirRessource")
     public ModelAndView saisirRessource(){
@@ -108,7 +108,6 @@ public class ResponsableGestionRessources {
             session.setAttribute("code",code);
             return "redirect:/AffectationDepartment";
         }
-
         return  "responsable/ressources.jsp";
     }
 
@@ -122,10 +121,12 @@ public class ResponsableGestionRessources {
     @PostMapping("AffecterDepartment")
     public ModelAndView affecterDepartment(String name,String action,HttpSession session){
         ModelAndView mv = new ModelAndView();
+        Department d = department_manager.findById(name);
+        System.out.println(d);
         if(action.equals("valider")){
             String code = (String) session.getAttribute("code");
+            session.removeAttribute("code");
             Affectation aff = new Affectation();
-            Department d = department_manager.findById(name);
             Ressource  r = ressource_manager.findById(code);
             aff.setDepartment(d);
             aff.setRessource(r);
@@ -133,7 +134,28 @@ public class ResponsableGestionRessources {
             List<ListeRessource> l = ressource_manager.findAll();
             mv.setViewName("responsable/ressources.jsp");
             mv.addObject("ressources",l);
+        }else{
+            mv.addObject("users",department_manager.getPersons(d));
+            mv.setViewName("responsable/affectationE.jsp");
+            session.setAttribute("department",d);
         }
         return mv;
+    }
+
+    @PostMapping("AffecterEnseignant")
+    public String affecterEnseignant(String user,HttpSession session){
+        String code = (String) session.getAttribute("code");
+        Ressource  r = ressource_manager.findById(code);
+        session.removeAttribute("code");
+        Department d = (Department) session.getAttribute("department");
+        session.removeAttribute("department");
+        User u = account_manager.findById(user);
+
+        Affectation_E aff = new Affectation_E();
+        aff.setRessource(r);
+        aff.setDepartment(d);
+        aff.setUser(u);
+        affecation_manager.add(aff);
+        return "redirect:/RessourcesList";
     }
 }

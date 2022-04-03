@@ -32,4 +32,8 @@ public class AccountManager {
             return null;
         }
     }
+
+    public User findById(String id){
+        return u_dao.findById(id).orElse(null);
+    }
 }
