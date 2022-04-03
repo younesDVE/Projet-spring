@@ -18,7 +18,7 @@ public class Ressource {
     @Transient
     String type;
 
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "nom_soc",referencedColumnName = "nom_soc")
     Fournisseur fr;
 

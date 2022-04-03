@@ -13,6 +13,7 @@ public class Department {
     @Transient
     List<User> person;
 
+
     public String getName() {
         return name;
     }

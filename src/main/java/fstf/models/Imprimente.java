@@ -37,14 +37,7 @@ public class Imprimente extends Ressource{
 
     @Override
     public String toString() {
-        return "Imprimente{" +
-                ", resolution='" + resolution + '\'' +
-                ", speed='" + speed + '\'' +
-                ", code='" + code + '\'' +
-                ", date_liv='" + date_liv + '\'' +
-                ", duree_gar=" + duree_gar +
-                ", type='" + type + '\'' +
-                ", fr=" + fr +
-                '}';
+        return  "resolution='" + resolution + '\'' +
+                ", speed='" + speed + '\'';
     }
 }

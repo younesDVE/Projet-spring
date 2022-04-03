@@ -55,16 +55,9 @@ public class Ordinateur extends Ressource {
 
     @Override
     public String toString() {
-        return "Ordinateur{" +
-                "cpu='" + cpu + '\'' +
+        return  "cpu='" + cpu + '\'' +
                 ", disque_dur='" + disque_dur + '\'' +
                 ", ecran='" + ecran + '\'' +
-                ", ram='" + ram + '\'' +
-                ", code='" + code + '\'' +
-                ", date_liv='" + date_liv + '\'' +
-                ", duree_gar=" + duree_gar +
-                ", type='" + type + '\'' +
-                ", fr=" + fr +
-                '}';
+                ", ram='" + ram + '\'';
     }
 }

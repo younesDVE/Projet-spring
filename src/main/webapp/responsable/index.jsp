@@ -13,7 +13,7 @@ Hello ${user.getNom()} <a href="Logout">logout</a>
 <a href="/AddAccount">Ajouter Compte</a>
 <a href="/SaisirRessource">Saisir Ressource</a>
 
-<a href="/">Lister Ressources</a>
+<a href="/RessourcesList">Lister Ressources</a>
 <a href="/">Lister Affectations</a>
 <a href="/">Lister Comptes</a>
 <a href="/">Lister fournisseurs</a>

@@ -17,6 +17,10 @@ public class DepartmentManager {
         d_dao.save(d);
     }
 
+    public Department findById(String name){
+        return d_dao.findById(name).orElse(null);
+    }
+
     public List<String> findAll(){
         List<String> list = new ArrayList<>();
         for(Department d:d_dao.findAll()) list.add(d.getName());
