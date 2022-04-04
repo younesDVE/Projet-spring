@@ -25,6 +25,16 @@ public class ResponsableGestionAccounts {
     @Autowired
     LabManager lab_manager;
 
+    @RequestMapping("AccountList")
+    public ModelAndView accountList(){
+        List<User> l = account_manager.getList();
+        ModelAndView mv = new ModelAndView("responsable/accounts.jsp");
+        mv.addObject("accounts",l);
+        System.out.println(l);
+
+        return mv;
+    }
+
     @GetMapping("/AddAccount")
     public String addAccount(HttpSession session){
         User user = (User) session.getAttribute("user");

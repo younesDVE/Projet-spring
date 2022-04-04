@@ -15,6 +15,7 @@
         <th>Duree garantie</th>
         <th>Marque</th>
         <th>Specification</th>
+        <th>Fournisseur</th>
         <th>Actions</th>
     </tr>
     <c:forEach var="ressource" items="${ressources}">
@@ -22,12 +23,13 @@
                <c:forEach var="att" items="${ressource.toList()}">
                    <td>${att}</td>
                </c:forEach>
+               <td>${ressource.getFr().getNom_soc()}</td>
                 <td>
                     <form method="post" action="RessourceAction">
                         <input type="hidden" name="code" value="${ressource.getCode()}">
                         <button type="submit" name="action" value="edite">Modifier</button>
-                        <button type="submit" name="action" value="delete">Supprimer</button>
-                        <c:if test="${!ressource.isAffacte()}">
+                        <c:if test="${!ressource.isAffected()}">
+                            <button type="submit" name="action" value="delete">Supprimer</button>
                             <button type="submit" name="action" value="affect">Affecter</button>
                         </c:if>
                     </form>

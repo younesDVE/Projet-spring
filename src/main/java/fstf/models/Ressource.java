@@ -4,6 +4,8 @@ package fstf.models;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -15,12 +17,31 @@ public class Ressource {
     Integer duree_gar;
     String marque;
 
-    @Transient
-    String type;
-
     @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "nom_soc",referencedColumnName = "nom_soc")
     Fournisseur fr;
+
+    @Transient
+    String type;
+
+    @Transient
+    public boolean affected = false;
+
+    @Transient
+    public Affectation affectation;
+
+
+
+    public List<String> toList(){
+        List<String> l = new ArrayList<>();
+        l.add(code);
+        l.add(this instanceof Imprimente? "Imprimente":"Ordinateur");
+        l.add(date_liv);
+        l.add(duree_gar + "");
+        l.add(marque);
+        l.add(toString());
+        return l;
+    }
 
     public String getCode() {
         return code;
@@ -68,6 +89,22 @@ public class Ressource {
 
     public void setFr(Fournisseur fr) {
         this.fr = fr;
+    }
+
+    public boolean isAffected() {
+        return affected;
+    }
+
+    public void setAffected(boolean affected) {
+        this.affected = affected;
+    }
+
+    public Affectation getAffectation() {
+        return affectation;
+    }
+
+    public void setAffectation(Affectation affectation) {
+        this.affectation = affectation;
     }
 
     @Override

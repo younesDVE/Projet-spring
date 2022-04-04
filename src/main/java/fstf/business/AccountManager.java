@@ -7,6 +7,9 @@ import fstf.doa.AccountDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class AccountManager {
     @Autowired
@@ -31,6 +34,12 @@ public class AccountManager {
         }else{
             return null;
         }
+    }
+
+    public List<User> getList(){
+        List<User> list = new ArrayList<>();
+        for(User u:u_dao.findAll()) list.add(u);
+        return list;
     }
 
     public User findById(String id){

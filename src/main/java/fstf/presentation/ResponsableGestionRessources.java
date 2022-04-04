@@ -91,7 +91,7 @@ public class ResponsableGestionRessources {
 
     @RequestMapping("RessourcesList")
     public ModelAndView ressources_list(){
-        List<ListeRessource> l = ressource_manager.findAll();
+        List<Ressource> l = ressource_manager.findAll();
         ModelAndView mv = new ModelAndView("responsable/ressources.jsp");
         mv.addObject("ressources",l);
         return mv;
@@ -108,7 +108,7 @@ public class ResponsableGestionRessources {
             session.setAttribute("code",code);
             return "redirect:/AffectationDepartment";
         }
-        return  "responsable/ressources.jsp";
+        return  "responsable/index.jsp";
     }
 
     @RequestMapping("AffectationDepartment")
@@ -131,7 +131,7 @@ public class ResponsableGestionRessources {
             aff.setDepartment(d);
             aff.setRessource(r);
             affecation_manager.add(aff);
-            List<ListeRessource> l = ressource_manager.findAll();
+            List<Ressource> l = ressource_manager.findAll();
             mv.setViewName("responsable/ressources.jsp");
             mv.addObject("ressources",l);
         }else{
@@ -157,5 +157,23 @@ public class ResponsableGestionRessources {
         aff.setUser(u);
         affecation_manager.add(aff);
         return "redirect:/RessourcesList";
+    }
+
+    @RequestMapping("FournisseursList")
+    public ModelAndView fournisseursList(){
+        List<Fournisseur> l = fournisseur_manager.getList();
+        ModelAndView mv = new ModelAndView("responsable/fournisseurs.jsp");
+        mv.addObject("fournisseurs",l);
+        System.out.println(l);
+        return mv;
+    }
+
+    @PostMapping("FournisseurAction")
+    public String FournisseurAction(String action,String id){
+        if(action.equals("delete")){
+            fournisseur_manager.delete(id);
+            return "redirect:/FournisseursList";
+        }
+        return  "responsable/index.jsp";
     }
 }
