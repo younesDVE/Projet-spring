@@ -10465,7 +10465,7 @@ pre code {
 
 .table-responsive {
   display: block;
-  width: 100%;
+  width: 80%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
