@@ -29,6 +29,32 @@ public class ResponsableGestionRessources {
     @Autowired
     AccountManager account_manager;
 
+    @RequestMapping("AffectationsListe")
+    public ModelAndView affectationsListe(){
+        ModelAndView mv = new ModelAndView("responsable/affectations.jsp");
+        mv.addObject("affectations",affecation_manager.findAll());
+        System.out.println(affecation_manager.findAll());
+        return mv;
+    }
+
+    @PostMapping("AffectationAction")
+    public ModelAndView AffectationAction(Integer id,String action,HttpSession session){
+        ModelAndView mv = new ModelAndView();
+        Affectation aff = affecation_manager.findById(id);
+        if(action.equals("delete")) {
+            affecation_manager.delete(aff);
+            mv.setViewName("responsable/affectations.jsp");
+            mv.addObject("affectations",affecation_manager.findAll());
+        }
+
+        if(action.equals("edite")){
+            session.setAttribute("code",aff.getRessource().getCode());
+            session.setAttribute("affectation",aff);
+            mv.setViewName("/AffectationDepartment");
+        }
+        return mv;
+    }
+
     @RequestMapping("SaisirRessource")
     public ModelAndView saisirRessource(){
         ModelAndView mv = new ModelAndView("responsable/saisir_ressource.jsp");
@@ -76,7 +102,7 @@ public class ResponsableGestionRessources {
         session.removeAttribute("ressource");
         ressource_manager.add(i);
         System.out.println(i);
-        return "responsable/index.jsp";
+        return "redirect:/RessourcesList";
     }
 
     @PostMapping("AddOrdinateur")
@@ -86,7 +112,7 @@ public class ResponsableGestionRessources {
         session.removeAttribute("ressource");
         ressource_manager.add(o);
         System.out.println(o);
-        return "responsable/index.jsp";
+        return "redirect:/RessourcesList";
     }
 
     @RequestMapping("RessourcesList")
@@ -126,14 +152,16 @@ public class ResponsableGestionRessources {
         if(action.equals("valider")){
             String code = (String) session.getAttribute("code");
             session.removeAttribute("code");
-            Affectation aff = new Affectation();
+            Affectation aff = (Affectation) session.getAttribute("affectation");
+            session.removeAttribute("affectation");
+            affecation_manager.delete(aff);
+            aff = new Affectation();
             Ressource  r = ressource_manager.findById(code);
             aff.setDepartment(d);
             aff.setRessource(r);
             affecation_manager.add(aff);
-            List<Ressource> l = ressource_manager.findAll();
-            mv.setViewName("responsable/ressources.jsp");
-            mv.addObject("ressources",l);
+            mv.addObject("affectations",affecation_manager.findAll());
+            mv.setViewName("responsable/affectations.jsp");
         }else{
             mv.addObject("users",department_manager.getPersons(d));
             mv.setViewName("responsable/affectationE.jsp");
@@ -151,12 +179,16 @@ public class ResponsableGestionRessources {
         session.removeAttribute("department");
         User u = account_manager.findById(user);
 
+        Affectation afff = (Affectation) session.getAttribute("affectation");
+        session.removeAttribute("affectation");
+        affecation_manager.delete(afff);
+
         Affectation_E aff = new Affectation_E();
         aff.setRessource(r);
         aff.setDepartment(d);
         aff.setUser(u);
         affecation_manager.add(aff);
-        return "redirect:/RessourcesList";
+        return "redirect:/AffectationsListe";
     }
 
     @RequestMapping("FournisseursList")

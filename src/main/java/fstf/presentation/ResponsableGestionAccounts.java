@@ -69,7 +69,7 @@ public class ResponsableGestionAccounts {
         System.out.println(u);
         session.removeAttribute("account");
         if(account_manager.add(u,a))
-            return "responsable/index.jsp";
+            return "redirect:/AccountList";
         else
             return "error.html";
     }
@@ -85,7 +85,7 @@ public class ResponsableGestionAccounts {
         session.removeAttribute("account");
         session.removeAttribute("department");
         if(account_manager.add(u,a))
-            return "responsable/index.jsp";
+            return "redirect:/AccountList";
         else
             return "error.html";
     }
@@ -104,7 +104,7 @@ public class ResponsableGestionAccounts {
         session.removeAttribute("department");
         session.removeAttribute("lab");
         if(account_manager.add(u,a))
-            return "responsable/index.jsp";
+            return "redirect:/AccountList";
         else
             return "error.html";
     }

@@ -65,7 +65,7 @@
                                 <h4 class="card-title">Information du Ressource</h4>
                                 <p class="card-description">
                                 </p>
-                                <form class="forms-sample" action="addRessource" onsubmit="check(this)">
+                                <form class="forms-sample" method="post" action="addRessource" onsubmit="check(this)">
                                     <div class="form-group">
                                         <label for="exampleInputUsername1">Code</label>
                                         <input type="text" name="code" class="form-control" id="exampleInputUsername1" placeholder="Code" required>

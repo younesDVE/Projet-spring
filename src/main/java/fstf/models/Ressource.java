@@ -39,7 +39,6 @@ public class Ressource {
         l.add(date_liv);
         l.add(duree_gar + "");
         l.add(marque);
-        l.add(toString());
         return l;
     }
 

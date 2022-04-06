@@ -64,7 +64,6 @@
                                             <th>Date Livraison</th>
                                             <th>Duree garantie</th>
                                             <th>Marque</th>
-                                            <th>Specification</th>
                                             <th>Fournisseur</th>
                                             <th>Actions</th>
                                         </tr>

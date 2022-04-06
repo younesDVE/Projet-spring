@@ -66,7 +66,7 @@
                                 <form class="forms-sample" method="post" action="AddImprimente">
                                     <div class="form-group">
                                         <label for="exampleInputUsername1">Resolution</label>
-                                        <input type="text" name="resolution"  class="form-control" id="exampleInputUsername1" placeholder="Resolution" readonly>
+                                        <input type="text" name="resolution"  class="form-control" id="exampleInputUsername1" placeholder="Resolution" required>
                                     </div>
 
                                     <div class="form-group">

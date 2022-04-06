@@ -6,7 +6,8 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Skydash Admin</title>
+    <title>page responsable</title>
+    <script src="../script.js"></script>
     <!-- plugins:css -->
     <link rel="stylesheet" href="template/vendors/feather/feather.css">
     <link rel="stylesheet" href="template/vendors/ti-icons/css/themify-icons.css">
@@ -51,7 +52,7 @@
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Table des Comptes</h4>
+                    <h4 class="card-title">Table des Fourniseurs</h4>
                     <p class="card-description">
                         <code></code>
                     </p>
@@ -59,33 +60,32 @@
                         <table class="table table-striped">
                             <thead>
                             <tr>
-                                <th>Account</th>
-                                <th>Role</th>
-                                <th>Nom</th>
-                                <th>Prenom</th>
+                                <th>Affectation N°</th>
+                                <th>Ressource</th>
+                                <th>Department</th>
+                                <th>Personell</th>
+                                <th>Actions</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <c:forEach var="a" items="${accounts}">
+                            <c:forEach var="aff" items="${affectations}">
                                 <tr>
-                                    <td>${a.getUser_id()}</td>
-
-                                    <c:if test="${a.getAccount().getRole() eq 1}">
-                                        <td>Responsable des ressources</td>
+                                    <td>${aff.getId()}</td>
+                                    <td>${aff.getRessource().getCode()} : ${aff.getRessource().getType()}</td>
+                                    <td>${aff.getDepartment().getName()}</td>
+                                    <c:if test="${aff.isForAll()}">
+                                       <td>-</td>
                                     </c:if>
-                                    <c:if test="${a.getAccount().getRole() eq 2}">
-                                         <td>Service Maintenance</td>
+                                    <c:if test="${!aff.isForAll()}">
+                                        <td>${aff.getUser().getNom()}</td>
                                     </c:if>
-                                    <c:if test="${a.getAccount().getRole() eq 3}">
-                                        <td>Administratif department</td>
-                                    </c:if>
-                                    <c:if test="${a.getAccount().getRole() eq 4}">
-                                         <td>Enseignant</td>
-                                    </c:if>
-
-
-                                    <td>${a.getNom()}</td>
-                                    <td>${a.getPrenom()}</td>
+                                    <td>
+                                        <form method="post" action="AffectationAction">
+                                            <input type="hidden" name="id" value="${aff.getId()}">
+                                            <button type="submit" name="action" value="edite" class="btn btn-warning">Modifier</button>
+                                            <button type="submit" name="action" value="delete" class="btn btn-danger">Supprimer</button>
+                                        </form>
+                                    </td>
                                 </tr>
                             </c:forEach>
 

@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="template/css/vertical-layout-light/style.css">
     <!-- endinject -->
     <link rel="shortcut icon" href="template/images/home.png" />
+    <script src="../script.js"></script>
 </head>
 <body>
 <div class="container-scroller">
