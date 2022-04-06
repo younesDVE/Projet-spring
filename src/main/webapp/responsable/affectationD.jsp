@@ -65,7 +65,7 @@
                                 <h4 class="card-title">Information Affectation</h4>
                                 <p class="card-description">
                                 </p>
-                                <form class="forms-sample" method="post" action="AffecterEnseignant">
+                                <form class="forms-sample" method="post" action="AffecterDepartment">
                                     <div class="form-group">
                                         <label>AffecterDepartment</label>
                                         <select name="name"  class="js-example-basic-single w-100" required>
