@@ -50,7 +50,6 @@
             </div>
         </div>
 
-
         <!-- partial -->
         <!-- partial:partials/_sidebar.html -->
         <script id="replace_with_sidebar" src="template/partials/sidebar.js"></script>

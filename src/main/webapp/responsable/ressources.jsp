@@ -51,7 +51,7 @@
                     <div class="col-lg-12 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Table des Ressorce</h4>
+                                <h4 class="card-title">Table des Ressources</h4>
                                 <p class="card-description">
                                      <code></code>
                                 </p>
