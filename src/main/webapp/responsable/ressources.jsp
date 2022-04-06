@@ -79,10 +79,10 @@
                                                 <td>
                                                     <form method="post" action="RessourceAction">
                                                         <input type="hidden" name="code" value="${ressource.getCode()}">
-                                                        <button type="submit" name="action" value="edite">Modifier</button>
+                                                        <button type="submit" name="action" value="edite" class="btn btn-warning">Modifier</button>
                                                         <c:if test="${!ressource.isAffected()}">
-                                                            <button type="submit" name="action" value="delete">Supprimer</button>
-                                                            <button type="submit" name="action" value="affect">Affecter</button>
+                                                            <button type="submit" name="action" value="delete" class="btn btn-danger">Supprimer</button>
+                                                            <button type="submit" name="action" value="affect" class="btn btn-info">Affecter</button>
                                                         </c:if>
                                                     </form>
                                                 </td>

@@ -75,9 +75,9 @@
                                     <td>
                                         <form method="post" action="FournisseurAction">
                                             <input type="hidden" name="id" value="${fr.getNom_soc()}">
-                                            <button type="submit" name="action" value="edite">Modifier</button>
+                                            <button type="submit" name="action" value="edite" class="btn btn-warning">Modifier</button>
                                             <c:if test="${fr.isDeletable()}">
-                                                <button type="submit" name="action" value="delete">Supprimer</button>
+                                                <button type="submit" name="action" value="delete" class="btn btn-danger">Supprimer</button>
                                             </c:if>
                                         </form>
                                     </td>
