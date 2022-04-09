@@ -48,7 +48,9 @@ public class HomeController {
         System.out.println("User visited Home Page with id=" + user.getAccount().getEmail());
 
         if(role == 1) mv.setViewName("responsable/index.jsp");
-        if(role == 2) mv.setViewName("personnel/index.jsp");
+        if(role == 2) mv.setViewName("maintenance/index.jsp");
+        if(role == 3) mv.setViewName("admin/index.jsp");
+        if(role == 4) mv.setViewName("prof/index.jsp");
         return mv;
     }
 
@@ -69,6 +71,7 @@ public class HomeController {
     @PostMapping("/Authentication")
     public String Authentication(String user_cin,String user_pwd,HttpSession session){
         User u = account_manager.authenticate(user_cin,user_pwd);
+        System.out.println(u);
         if(u!=null){
             session.setAttribute("user",u);
             System.out.println("User authenticated as : " + u.getNom() + "_" + u.getPrenom() + "_" + u.getAccount().getEmail());

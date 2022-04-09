@@ -34,18 +34,4 @@ public class AffecationManager {
         }
         return list;
     }
-
-    public List<Ressource> findMyRessource(Adminstratif u){
-         List<Ressource> list = new ArrayList<>();
-         for(Affectation a:aff_dao.findAffectationByDepartment(u.getDepartment()))
-             list.add(a.getRessource());
-         return list;
-    }
-
-    public List<Ressource> findMyRessource(Enseignant e){
-        List<Ressource> list = new ArrayList<>();
-        for(Affectation_E a:aff_dao.findAffectationByUser(e))
-            list.add(a.getRessource());
-        return list;
-    }
 }

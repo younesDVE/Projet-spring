@@ -30,23 +30,24 @@ public class GestionPanne {
     public ModelAndView signalerPanne()
     { ModelAndView mv= new ModelAndView("Personnel/signaler_panne.jsp");
 
-
         return mv;
     }
+
     @RequestMapping("ListerMyRessource")
     public ModelAndView listermyressource(HttpSession session) {
-        //System.out.println(user);
+        ModelAndView mv = new ModelAndView();
         User user = (User) session.getAttribute("user");
         List<Ressource> listr = null;
-        if (user instanceof Adminstratif) {
-            //Adminstratif adm= (Adminstratif) user;
+        if (user instanceof Adminstratif){
+            mv.setViewName("admin/ressources.jsp");
             listr = pm.listRessource((Adminstratif) user);
         }
-        else
-        {
+
+        if (user instanceof Enseignant){
+            mv.setViewName("prof/ressources.jsp");
             listr = pm.listRessource((Enseignant) user);
         }
-        ModelAndView mv = new ModelAndView("Personnel/ressources.jsp");
+
         mv.addObject("ressources", listr);
         return mv;
     }

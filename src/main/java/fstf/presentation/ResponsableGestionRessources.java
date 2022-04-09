@@ -34,21 +34,6 @@ public class ResponsableGestionRessources {
         ModelAndView mv = new ModelAndView("responsable/affectations.jsp");
         mv.addObject("affectations",affecation_manager.findAll());
         System.out.println(affecation_manager.findAll());
-
-        User u = account_manager.findById("A123446");
-        List<Ressource> l;
-        if(u instanceof Adminstratif)
-            l = affecation_manager.findMyRessource((Adminstratif) u);
-        else
-            l = null;
-        System.out.println("Admin:" + l);
-
-        u = account_manager.findById("E123459");
-        if(u instanceof Enseignant)
-            l = affecation_manager.findMyRessource((Enseignant) u);
-        else
-            l = null;
-        System.out.println("Ensiegnant:" + l);
         return mv;
     }
 

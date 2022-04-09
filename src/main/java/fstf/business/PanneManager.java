@@ -16,8 +16,6 @@ public class PanneManager {
     @Autowired
     AffectationDAO af;
     @Autowired
-    AffectationDAO_E afe;
-    @Autowired
     DepartmentDAO dd;
     @Autowired
     UserDAO ud;
@@ -31,9 +29,7 @@ public class PanneManager {
     public List<Ressource> listRessource(Adminstratif user)
     {
         List<Ressource> listt =new ArrayList<>();
-        List<Affectation> listeee = new ArrayList<>();
-        String ee= ud.findUserByNom(user.getNom()).getDepartment().getName();
-       listeee =  af.findAffectationByDepartment(dd.findDepartmentByName(ee));
+        List<Affectation> listeee =  af.findAffectationByDepartment(user.getDepartment());
 
         if(listeee!=null){
 
@@ -56,8 +52,7 @@ public class PanneManager {
     public List<Ressource> listRessource(Enseignant user)
     {
         List<Ressource> listt =new ArrayList<>();
-        List<Affectation_E> listeee = new ArrayList<>();
-        listeee =  afe.findAffectation_EByUser(user);
+        List<Affectation_E> listeee =  af.findAffectationByUser(user);
 
         if(listeee!=null){
 
