@@ -10,7 +10,6 @@ import java.util.List;
 
 public interface AffectationDAO extends CrudRepository<Affectation,Integer> {
     public Affectation findAffectationByRessource_Code(String code);
-    public List<Affectation> findAffectationByDepartment(Department d);
-    public List<Affectation_E> findAffectationByUser(User u);
+    public List<Affectation> findAffectationByDepartment(Department departement);
 }
 
