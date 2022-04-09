@@ -1,13 +1,10 @@
 package fstf.business;
 
 import fstf.doa.AffectationDAO;
-import fstf.models.Affectation;
-import fstf.models.Affectation_E;
-import fstf.models.Imprimente;
+import fstf.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +32,20 @@ public class AffecationManager {
             a.setForAll(a instanceof Affectation_E? false:true);
             list.add(a);
         }
+        return list;
+    }
+
+    public List<Ressource> findMyRessource(Adminstratif u){
+         List<Ressource> list = new ArrayList<>();
+         for(Affectation a:aff_dao.findAffectationByDepartment(u.getDepartment()))
+             list.add(a.getRessource());
+         return list;
+    }
+
+    public List<Ressource> findMyRessource(Enseignant e){
+        List<Ressource> list = new ArrayList<>();
+        for(Affectation_E a:aff_dao.findAffectationByUser(e))
+            list.add(a.getRessource());
         return list;
     }
 }
