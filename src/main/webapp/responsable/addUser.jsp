@@ -63,7 +63,7 @@
                                 <h4 class="card-title">Information du Compte</h4>
                                 <p class="card-description">
                                 </p>
-                                <form class="forms-sample" method="post" action="${action}">
+                                <form class="forms-sample" method="post" action="AddUser">
                                     <div class="form-group">
                                         <label for="exampleInputUsername1">Nom</label>
                                         <input type="text" name="nom" class="form-control" id="exampleInputUsername1" placeholder="Nom" required>

@@ -25,6 +25,30 @@ public class ResponsableGestionAccounts {
     @Autowired
     LabManager lab_manager;
 
+    @RequestMapping("addDepartmentLabReq")
+    public ModelAndView addDepartmentLabReq(){
+        ModelAndView mv = new ModelAndView("responsable/add_department_lab.jsp");
+        mv.addObject("departments",department_manager.findAll());
+        return mv;
+    }
+
+    @PostMapping("AjouterDeppartement")
+    public String addDepartment(Department d){
+        department_manager.add(d);
+        System.out.println(d);
+        return "responsable/index.jsp";
+    }
+
+    @PostMapping("AjouterLaboratoir")
+    public String addLab(String name,Lab l){
+        Department d = department_manager.findById(name);
+        l.setDepartment(d);
+        lab_manager.add(l);
+        System.out.println(l);
+        return "responsable/index.jsp";
+    }
+
+
     @RequestMapping("AccountList")
     public ModelAndView accountList(){
         List<User> l = account_manager.getList();
@@ -36,10 +60,7 @@ public class ResponsableGestionAccounts {
     }
 
     @GetMapping("/AddAccount")
-    public String addAccount(HttpSession session){
-        User user = (User) session.getAttribute("user");
-        if(user.getAccount().getRole() != 1) return "unauthorized.html";
-
+    public String addAccount(){
         System.out.println("Request for adding account");
         return "responsable/addAccount.html";
     }
@@ -49,16 +70,49 @@ public class ResponsableGestionAccounts {
         ModelAndView mv = new ModelAndView("responsable/addUser.jsp");
         session.setAttribute("account",a);
 
-        if(a.getRole()==3) //Administratif
+        if(a.getRole()==3) { //Administratif
+            mv.addObject("departments",department_manager.findAll());
             mv.setViewName("responsable/addAdmin.jsp");
+        }
         if(a.getRole()==4) { //Enseignant
             mv.addObject("deps",department_manager.findAll());
             mv.addObject("labs",lab_manager.findAll());
             mv.setViewName("responsable/addProf.jsp");
         }
-        if(a.getRole()<3) mv.addObject("action","AddUser");
         System.out.println(a);
         return mv;
+    }
+
+    @PostMapping("AddAdmin")
+    public String addAccount(Adminstratif u,String name, HttpSession session){
+        Account    a = (Account) session.getAttribute("account");
+        Department d = department_manager.findById(name);
+        u.setAccount(a);
+        u.setUser_id(a.getAccount_id());
+        u.setDepartment(d);
+        System.out.println(u);
+        session.removeAttribute("account");
+        if(account_manager.add(u,a))
+            return "redirect:/AccountList";
+        else
+            return "error.html";
+    }
+
+    @PostMapping("AddProf")
+    public String addAccount(Enseignant u,String dep,String lab, HttpSession session){
+        Account    a = (Account) session.getAttribute("account");
+        Department d = department_manager.findById(dep);
+        Lab        l = lab_manager.findById(lab);
+        u.setAccount(a);
+        u.setLab(l);
+        u.setUser_id(a.getAccount_id());
+        u.setDepartment(d);
+        System.out.println("Prof:" + u);
+        session.removeAttribute("account");
+        if(account_manager.add(u,a))
+            return "redirect:/AccountList";
+        else
+            return "error.html";
     }
 
     @PostMapping("/AddUser")
@@ -74,61 +128,13 @@ public class ResponsableGestionAccounts {
             return "error.html";
     }
 
-    @PostMapping("AddAdmin")
-    public String addAccount(Adminstratif u, HttpSession session){
-        Account    a = (Account) session.getAttribute("account");
-        Department d = (Department)  session.getAttribute("department");
-        u.setAccount(a);
-        u.setUser_id(a.getAccount_id());
-        u.setDepartment(d);
-        System.out.println(u);
-        session.removeAttribute("account");
-        session.removeAttribute("department");
-        if(account_manager.add(u,a))
-            return "redirect:/AccountList";
-        else
-            return "error.html";
-    }
-
-    @PostMapping("AddProf")
-    public String addAccount(Enseignant u, HttpSession session){
-        Account    a = (Account) session.getAttribute("account");
-        Department d = (Department)  session.getAttribute("department");
-        Lab        l = (Lab)  session.getAttribute("lab");
-        u.setAccount(a);
-        u.setLab(l);
-        u.setUser_id(a.getAccount_id());
-        u.setDepartment(d);
-        System.out.println(u);
-        session.removeAttribute("account");
-        session.removeAttribute("department");
-        session.removeAttribute("lab");
-        if(account_manager.add(u,a))
-            return "redirect:/AccountList";
-        else
-            return "error.html";
-    }
 
 
-    @PostMapping("AddDepartment")
-    public ModelAndView addDepartment(Department d, HttpSession session){
-        ModelAndView mv = new ModelAndView("responsable/addUser.jsp");
-        session.setAttribute("department",d);
-        department_manager.add(d);
-        System.out.println(d);
-        mv.addObject("action","AddAdmin");
-        return mv;
-    }
-    @PostMapping("AddLab")
-    public ModelAndView addLab(Department d,Lab l, HttpSession session){
-        ModelAndView mv = new ModelAndView("responsable/addUser.jsp");
-        session.setAttribute("lab",l);
-        session.setAttribute("department",d);
-        lab_manager.add(l);
-        System.out.println(l);
-        System.out.println(d);
-        mv.addObject("action","AddProf");
-        return mv;
-    }
+
+
+
+
+
+
 }
 

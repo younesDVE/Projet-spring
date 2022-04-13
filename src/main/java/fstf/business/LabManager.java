@@ -22,4 +22,8 @@ public class LabManager {
         for(Lab d:d_dao.findAll()) list.add(d.getNom());
         return list;
     }
+
+    public Lab findById(String name){
+        return d_dao.findById(name).orElse(null);
+    }
 }

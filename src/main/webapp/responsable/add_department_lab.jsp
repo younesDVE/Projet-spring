@@ -1,4 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -61,20 +62,34 @@
                     <div class="col-md-6 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Completer Information du Compte</h4>
+                                <h4 class="card-title">Ajouter Deppartement</h4>
                                 <p class="card-description">
                                 </p>
-                                <form class="forms-sample" method="post" action="AddAdmin">
+                                <form class="forms-sample" method="post" action="AjouterDeppartement">
                                     <div class="form-group">
                                         <label for="exampleInputUsername1">Nom</label>
-                                        <input type="text" name="nom" class="form-control" id="exampleInputUsername1" placeholder="Nom" required>
+                                        <input type="text" name="name" class="form-control" id="exampleInputUsername1" placeholder="Nom" required>
                                     </div>
+
+                                    <button type="submit"  class="btn btn-primary mr-2">Ajouter Deppartement</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-6 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Ajouter Laboratoir</h4>
+                                <p class="card-description">
+                                </p>
+                                <form class="forms-sample" method="post" action="AjouterLaboratoir">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Prenom</label>
-                                        <input type="text" name="prenom" class="form-control" id="exampleInputEmail1" placeholder="Prenom" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputUsername1">Department</label>
+                                        <label for="kkkk1">Deppartement</label>
                                         <select id="kkkk1" name="name" class="form-control" required >
                                             <option selected disabled>Choisie Department</option>
                                             <c:forEach var="listValue" items="${departments}">
@@ -82,17 +97,18 @@
                                             </c:forEach>
                                         </select>
                                     </div>
-                                    <button type="submit" name="action" value="addUser" class="btn btn-primary mr-2">Valider</button>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputUsername1">Nom Laboratoir</label>
+                                        <input type="text" name="nom" class="form-control" id="exampleInputUsername1" placeholder="Nom" required>
+                                    </div>
+
+                                    <button type="submit"  class="btn btn-primary mr-2">Creer Laboratoir</button>
                                 </form>
                             </div>
                         </div>
                     </div>
-                    <!-- content-wrapper ends -->
-                    <!-- partial:partials/_footer.html -->
-                    <footer class="footer">
 
-                    </footer>
-                    <!-- partial -->
                 </div>
                 <!-- main-panel ends -->
             </div>

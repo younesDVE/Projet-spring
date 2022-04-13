@@ -64,25 +64,34 @@
                                 <h4 class="card-title">Information du Compte</h4>
                                 <p class="card-description">
                                 </p>
-                                <form class="forms-sample" method="post" action="AddLab">
-                                        <label>Department</label>
-                                    <select name="name" class="js-example-basic-single w-100" required >
+                                <form class="forms-sample" method="post" action="AddProf">
+                                <div class="form-group">
+                                    <label for="exampleInputUsername1">Nom</label>
+                                    <input type="text" name="nom" class="form-control" id="exampleInputUsername1" placeholder="Nom" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Prenom</label>
+                                    <input type="text" name="prenom" class="form-control" id="exampleInputEmail1" placeholder="Prenom" required>
+                                </div>
+                                 <div class="form-group">
+                                    <label for="exampleInputUsername1">Department</label>
+                                    <select id="kkkk1" name="dep" class="form-control" required >
                                         <option selected disabled>Choisie Department</option>
                                         <c:forEach var="listValue" items="${deps}">
                                             <option value="${listValue}">${listValue}</option>
                                         </c:forEach>
                                     </select>
+                                 </div>
+                                 <div class="form-group">
+                                 </div>
                                     <label>Laboratoir</label>
-                                    <select name="nom" class="js-example-basic-single w-100" onchange="hide()">
+                                    <select name="lab" class="form-control">
                                         <option selected disabled>Choisie Lab</option>
                                         <c:forEach var="listValue" items="${labs}">
                                             <option value="${listValue}">${listValue}</option>
                                         </c:forEach>
                                     </select>
-                                    <div id="nom_soc" style="display:inline" class="form-group">
-                                        <label for="exampleInputUsername1"></label>
-                                        ou  <input type="text" name="nom" class="form-control" id="exampleInputUsername1" placeholder="Laboratoire" required>
-                                    </div>
+
                                     <button type="submit" name="action" value="addUser" class="btn btn-primary mr-2">Valider</button>
                                 </form>
                             </div>
