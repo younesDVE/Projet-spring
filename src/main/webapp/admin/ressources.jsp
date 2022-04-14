@@ -23,7 +23,7 @@
 <body>
 <div class="container-scroller">
     <!-- partial:template/partials/_navbar.html -->
-    <script id="replace_with_navbar" src="template/partials/nav.js"></script>
+    <script id="replace_with_navbar" src="template/partials/navA.js"></script>
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
         <!-- partial:template/partials/_settings-panel.html -->
@@ -46,7 +46,7 @@
             </div>
         </div>
         <!-- partial:template/partials/_sidebar.html -->
-        <script id="replace_with_sidebar" src="template/partials/sidebar.js"></script>
+        <script id="replace_with_sidebar" src="template/partials/sidebarA.js"></script>
         <!-- partial -->
                     <div class="col-lg-12 grid-margin stretch-card">
                         <div class="card">
