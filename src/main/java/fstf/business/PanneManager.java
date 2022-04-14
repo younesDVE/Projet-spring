@@ -25,6 +25,10 @@ public class PanneManager {
     public void save(Panne p){
         pd.save(p);
     }
+    public Panne findById(Integer Id){
+        return pd.findById(Id).orElse(null);
+    }
+
 
     public List<Ressource> listRessource(Adminstratif user)
     {

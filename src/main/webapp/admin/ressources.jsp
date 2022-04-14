@@ -77,8 +77,8 @@
                                                 <td>${ressource.getFr().getNom_soc()}</td>
                                                 <td>
                                                     <form method="post" action="SignalerPanne">
-                                                        <input type="hidden" name="code" value="${ressource.getCode()}">
-                                                        <button type="submit" name="action" value="delete" class="btn btn-danger">signaler panne</button>
+                                                        <input type="hidden" name="Id" value="${ressource.getCode()}">
+                                                        <button type="submit" class="btn btn-danger">signaler panne</button>
                                                     </form>
                                                 </td>
                                             </tr>

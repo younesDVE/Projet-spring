@@ -1,6 +1,7 @@
 package fstf.presentation;
 
 import fstf.business.PanneManager;
+import fstf.business.RessourceManager;
 import fstf.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,8 @@ import java.util.List;
 public class GestionPanne {
     @Autowired
     PanneManager pm;
+    @Autowired
+    RessourceManager rm;
     @PostMapping("EnvoyerPanne")
     public String signalerPanne(Panne p){
         pm.save(p);
@@ -27,10 +30,21 @@ public class GestionPanne {
 
 
     @RequestMapping("SignalerPanne")
-    public ModelAndView signalerPanne()
-    { ModelAndView mv= new ModelAndView("Personnel/signaler_panne.jsp");
+    public ModelAndView signalerpanne(String code , HttpSession session) {
+        ModelAndView mv = new ModelAndView();
+        Ressource r = rm.findById(code);
+        System.out.println(r.getCode());
+        User user = (User) session.getAttribute("user");
+            if (user instanceof Adminstratif) {
+                mv.setViewName("admin/signaler_panne.jsp");
+            }
 
+            if (user instanceof Enseignant) {
+                mv.setViewName("prof/signaler_panne.jsp");
+            }
+        mv.addObject("Ressource", r);
         return mv;
+
     }
 
     @RequestMapping("ListerMyRessource")

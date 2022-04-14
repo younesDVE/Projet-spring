@@ -60,15 +60,9 @@
                     <div class="col-md-6 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Information de Panne</h4>
+                                <h4 class="card-title">Information de Panne du Ressource avec code : ${Ressource.getCode()}</h4>
                                 <p class="card-description">
                                 </p>
-                                <input name="code" type="text">
-                                <input name="date" type="text">
-                                <input name="frequence" type="text">
-                                <input name="ordre" type="text">
-                                <input name="explication" type="text">
-                                <button type="submit" >envoyer</button>
                                 <form class="forms-sample" method="post" action="/EnvoyerPanne">
                                     <div class="form-group">
                                         <label for="exampleInputUsername1">Code</label>
@@ -88,9 +82,10 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Explication</label>
-                                        <input type="text" name="explication" class="form-control" id="exampleInputPassword1" placeholder="Explication" required>
+                                        <input type="textarea" name="explication" class="form-control" id="exampleInputPassword1" placeholder="Explication" required>
                                     </div>
-                                    <button type="submit" name="action" class="btn btn-primary mr-2">Envoyer</button>
+                                    <input type="hidden" name="code" value="${ressource.getCode()}">
+                                    <button type="submit" class="btn btn-primary mr-2">Envoyer</button>
                                 </form>
                             </div>
                         </div>
