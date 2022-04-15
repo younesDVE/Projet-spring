@@ -28,7 +28,8 @@ public class PanneManager {
     public Panne findById(Integer Id){
         return pd.findById(Id).orElse(null);
     }
-
+    public void deleteById(Integer Id){pd.deleteById(Id);}
+    public List<Panne> listpanne(){return (List<Panne>) pd.findAll();}
 
     public List<Ressource> listRessource(Adminstratif user)
     {

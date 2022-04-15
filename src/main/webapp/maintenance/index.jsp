@@ -23,7 +23,7 @@
 </head>
 <body>
 <div class="container-scroller">
-
+<a href="ListerPanne">lister panne</a>
     <!-- partial:partials/_navbar.html -->
     <script id="replace_with_navbar" src="template/partials/navM.js"></script>
     <!-- partial -->
@@ -46,6 +46,7 @@
                     <div class="tiles default"></div>
                 </div>
             </div>
+
         </div>
 
 
@@ -118,6 +119,7 @@
         <script src="template/js/dashboard.js"></script>
         <script src="template/js/Chart.roundedBarCharts.js"></script>
         <!-- End custom js for this page-->
+
 </body>
 
 </html>

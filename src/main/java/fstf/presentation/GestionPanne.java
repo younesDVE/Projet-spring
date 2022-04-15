@@ -66,5 +66,29 @@ public class GestionPanne {
         return mv;
     }
 
+    @RequestMapping("ListerPanne")
+    public ModelAndView listerpanne(){
+        ModelAndView mv = new ModelAndView();
+       List<Panne> listp= pm.listpanne();
+       mv.setViewName("maintenance/pannes.jsp");
+       mv.addObject("liste",listp);
+     return mv;
+    }
+
+    @RequestMapping("ConsulterPanne")
+    public ModelAndView consulterpanne(Integer id){
+        ModelAndView mv = new ModelAndView();
+        Panne pan= pm.findById(id);
+        mv.setViewName("maintenance/consulterpanne.jsp");
+        mv.addObject("panne",pan);
+        return mv;
+    }
+
+    @RequestMapping("DeletePanne")
+    public String deletepanne(Integer id){
+        pm.deleteById(id);
+        return "redirect:/ListerPanne";
+    }
+
 
 }
