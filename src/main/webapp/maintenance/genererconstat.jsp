@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Page Responsable</title>
+    <title>Page Enseignant</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="template/vendors/feather/feather.css">
     <link rel="stylesheet" href="template/vendors/ti-icons/css/themify-icons.css">
@@ -22,11 +22,11 @@
     <link rel="shortcut icon" href="template/images/home.png" />
 </head>
 <body>
-
 <div class="container-scroller">
 
     <!-- partial:partials/_navbar.html -->
-    <script id="replace_with_navbar" src="template/partials/nav.js"></script>
+    <script id="replace_with_navbar" src="template/partials/navP.js"></script>
+
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
         <!-- partial:partials/_settings-panel.html -->
@@ -49,42 +49,37 @@
             </div>
         </div>
 
+
         <!-- partial -->
         <!-- partial:partials/_sidebar.html -->
-        <script id="replace_with_sidebar" src="template/partials/sidebar.js"></script>
+        <script id="replace_with_sidebar" src="template/partials/sidebarP.js"></script>
         <!-- partial -->
         <div class="main-panel">
             <div class="content-wrapper">
                 <div class="row">
-                    <div class="col-md-12 grid-margin">
-                        <div class="row">
-                            <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                                <h3 class="font-weight-bold"><a href="ListerConstat">lister Constat</a></h3>
-                                <h3 class="font-weight-bold">Welcome ${user.getNom()} ${user.getPrenom()}</h3>
-                                <h6 class="font-weight-normal mb-0">Page Responsable Des Ressources <span class="text-primary"> ! </span></h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
                     <div class="col-md-6 grid-margin stretch-card">
-                        <div class="card tale-bg">
-                            <div class="card-people mt-auto">
-                                <img src="template/images/dashboard/accueil1.jpg" alt="people">
-                                <div class="weather-info">
-                                    <div class="d-flex">
-                                        <div>
-                                        </div>
-                                        <div class="ml-2">
-                                            <h4 class="location font-weight-normal">Morocco</h4>
-                                            <h6 class="font-weight-normal">Fes</h6>
-                                        </div>
+                        <div class="card">
+                            <div class="card-body">
+
+                                <p class="card-description">
+                                </p>
+                                <form class="forms-sample" method="post" action="/AddConstat">
+
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">objet</label>
+                                        <input type="text" name="objet" class="form-control" id="exampleInputEmail1" placeholder="objet" required>
                                     </div>
-                                </div>
+                                    <div class="form-group">
+                                        <label>email</label>
+                                        <input type="text" name="email" class="form-control"  placeholder="email" required>
+                                    </div>
+
+
+                                    <button type="submit" class="btn btn-primary mr-2">Envoyer</button>
+                                </form>
                             </div>
                         </div>
                     </div>
-
                     <!-- content-wrapper ends -->
                     <!-- partial:partials/_footer.html -->
                     <footer class="footer">
@@ -119,7 +114,7 @@
         <script src="template/js/dashboard.js"></script>
         <script src="template/js/Chart.roundedBarCharts.js"></script>
         <!-- End custom js for this page-->
+
 </body>
 
 </html>
-

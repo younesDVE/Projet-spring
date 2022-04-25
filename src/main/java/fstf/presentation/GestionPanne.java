@@ -1,5 +1,6 @@
 package fstf.presentation;
 
+import fstf.business.ConstatManager;
 import fstf.business.PanneManager;
 import fstf.business.RessourceManager;
 import fstf.models.*;
@@ -9,11 +10,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.jws.WebParam;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
 public class GestionPanne {
+    @Autowired
+    ConstatManager cm;
     @Autowired
     PanneManager pm;
     @Autowired
@@ -90,5 +94,26 @@ public class GestionPanne {
         return "redirect:/ListerPanne";
     }
 
+    @RequestMapping("SaisirConstat")
+    public ModelAndView saisirconstat(){
+        ModelAndView mv =new ModelAndView();
+        mv.setViewName("maintenance/genererconstat.jsp");
+        return mv;
+    }
+    @PostMapping("AddConstat")
+    public void addconstat(Constat c)
+    {
+     cm.save(c);
+     System.out.println(c.toString());
+    }
+
+    @RequestMapping("ListerConstat")
+    public ModelAndView listerconstat(){
+        ModelAndView mv = new ModelAndView();
+        List<Constat> listc= cm.listconstat();
+        mv.setViewName("responsable/constat.jsp");
+        mv.addObject("liste",listc);
+        return mv;
+    }
 
 }
