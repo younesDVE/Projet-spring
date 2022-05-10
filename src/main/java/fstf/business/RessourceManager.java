@@ -22,6 +22,9 @@ public class RessourceManager {
         r_dao.save(r);
         return true;
     }
+    public Ressource findRessourceByCode(String code){
+        return r_dao.findRessourceByCode(code);
+    }
 
     public Ressource findById(String code){
         return r_dao.findById(code).orElse(null);

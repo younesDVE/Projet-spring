@@ -63,6 +63,7 @@
                                 <th>code</th>
                                 <th>date</th>
                                 <th>ordre</th>
+                                <th>Status</th>
 
                             </tr>
                             </thead>
@@ -74,6 +75,7 @@
                                     <td>${panne.getCode()}</td>
                                     <td>${panne.getDate()}</td>
                                     <td>${panne.getOrdre()}</td>
+                                    <td>${panne.getStatus()}</td>
                                     <td>
                                         <form method="post" action="ConsulterPanne">
                                             <input type="hidden" name="id" value="${panne.getId()}">

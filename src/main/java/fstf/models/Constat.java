@@ -1,9 +1,6 @@
 package fstf.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Constat {
@@ -12,9 +9,20 @@ public class Constat {
     Integer id;
     String objet;
     String email;
+    @OneToOne()
+    @JoinColumn(name = "panne",referencedColumnName = "id")
+    Panne panne;
 
     public Constat() {
 
+    }
+
+    public Panne getPanne() {
+        return panne;
+    }
+
+    public void setPanne(Panne panne) {
+        this.panne = panne;
     }
 
     public Integer getId() {

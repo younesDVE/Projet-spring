@@ -9,4 +9,5 @@ public interface PanneDAO extends CrudRepository<Panne,Integer> {
     Panne findPanneByCode(String code);
 
 
+
 }

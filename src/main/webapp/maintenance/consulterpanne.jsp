@@ -14,13 +14,13 @@
 <h5>${panne.getFrequence()}</h5>
 <h5>${panne.getExplication()}</h5>
 
-<c:if test="${panne.getOrdre()== 'logiciel'}">
+<c:if test="${panne.getOrdre()== 'logiciel' and panne.getStatus()==0}">
 <form method="post" action="DeletePanne">
-    <input type="hidden" name="id" value="${panne.getId()}">
+    <input type="hidden" name="id" value="${panne.getId() }">
     <button type="submit" name="action" value="delete" class="btn btn-success">reparer</button>
 </form>
 </c:if>
-    <c:if test="${panne.getOrdre()== 'material'}">
+    <c:if test="${panne.getOrdre()== 'material' and panne.getStatus()==0}">
 <form method="post" action="SaisirConstat">
     <input type="hidden" name="id" value="${panne.getId()}">
     <button type="submit" name="action" value="delete" class="btn btn-success">genere constat</button>

@@ -1,10 +1,7 @@
 package fstf.models;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 
@@ -17,9 +14,21 @@ public class Panne {
     String frequence;
     String ordre;
     String explication;
+    Integer status =0;
+    @OneToOne()
+    @JoinColumn(name = "ressource",referencedColumnName = "code")
+    Ressource ressource;
 
     public Panne() {
 
+    }
+
+    public Ressource getRessource() {
+        return ressource;
+    }
+
+    public void setRessource(Ressource ressource) {
+        this.ressource = ressource;
     }
 
     public Integer getId() {
@@ -68,6 +77,14 @@ public class Panne {
 
     public void setExplication(String explication) {
         this.explication = explication;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     @Override

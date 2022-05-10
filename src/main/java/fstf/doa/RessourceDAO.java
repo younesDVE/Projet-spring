@@ -11,4 +11,5 @@ public interface RessourceDAO extends CrudRepository<Ressource,String> {
     @Transactional
     @Query("FROM Ressource WHERE nom_soc=?1")
     public List<Ressource> findByFr(String nom_soc);
+    public Ressource findRessourceByCode(String code);
 }

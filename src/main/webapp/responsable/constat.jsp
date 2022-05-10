@@ -73,8 +73,8 @@
                                     <td>${constat.getObjet()}</td>
                                     <td>${constat.getEmail()}</td>
                                     <td>
-                                        <form method="post" action="ConsulterPanne">
-                                            <input type="hidden" name="id" value="${panne.getId()}">
+                                        <form method="post" action="ConsulterConstat">
+                                            <input type="hidden" name="id" value="${constat.getId()}">
                                             <button type="submit" name="action" value="delete" class="btn btn-success">show more</button>
                                         </form>
                                     </td>

@@ -78,7 +78,12 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Ordre</label>
-                                        <input type="text" name="ordre" class="form-control" id="exampleInputPassword1" placeholder="Ordre" required>
+
+                                        <select id="ordre" name="ordre" class="form-control" required >
+
+                                            <option value="material">material</option>
+                                            <option value="logiciel">logiciel</option>
+                                        </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Explication</label>

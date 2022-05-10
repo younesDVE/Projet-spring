@@ -12,6 +12,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.jws.WebParam;
 import javax.servlet.http.HttpSession;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -23,11 +27,20 @@ public class GestionPanne {
     @Autowired
     RessourceManager rm;
     @PostMapping("EnvoyerPanne")
-    public String signalerPanne(Panne p){
+    public ModelAndView signalerPanne(Panne p,String codeee){
+
+
+        Ressource rr=rm.findById(codeee);
+
+        System.out.println("le code de ressource est "+rr);
+        p.setRessource(rr);
+        System.out.println("pannnnneeee"+p.getRessource());
         pm.save(p);
-        System.out.println("hello");
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("admin/signaler_panne.jsp");
+        System.out.println("print"+p.getOrdre());
         System.out.println(p);
-        return"gg";
+        return mv;
 
     }
 
@@ -57,7 +70,7 @@ public class GestionPanne {
         User user = (User) session.getAttribute("user");
         List<Ressource> listr = null;
         if (user instanceof Adminstratif){
-            mv.setViewName("admin/ressources.jsp");
+            mv.setViewName("prof/ressources.jsp");
             listr = pm.listRessource((Adminstratif) user);
         }
 
@@ -82,6 +95,7 @@ public class GestionPanne {
     @RequestMapping("ConsulterPanne")
     public ModelAndView consulterpanne(Integer id){
         ModelAndView mv = new ModelAndView();
+        System.out.println("id de panne"+id);
         Panne pan= pm.findById(id);
         mv.setViewName("maintenance/consulterpanne.jsp");
         mv.addObject("panne",pan);
@@ -95,16 +109,29 @@ public class GestionPanne {
     }
 
     @RequestMapping("SaisirConstat")
-    public ModelAndView saisirconstat(){
+    public ModelAndView saisirconstat(String id,HttpSession session){
+        System.out.println("eeeee"+id);
+        session.setAttribute("id",id);
         ModelAndView mv =new ModelAndView();
         mv.setViewName("maintenance/genererconstat.jsp");
         return mv;
     }
     @PostMapping("AddConstat")
-    public void addconstat(Constat c)
+    public String addconstat(Constat c,HttpSession session)
     {
+     String id = (String) session.getAttribute("id");
+     int aa=Integer.parseInt(id);
+     Panne p=pm.findById(aa);
+     p.setStatus(1);
+     c.setPanne(p);
+
+
      cm.save(c);
+
+
      System.out.println(c.toString());
+         return "redirect:/SaisirConstat";
+
     }
 
     @RequestMapping("ListerConstat")
@@ -115,5 +142,52 @@ public class GestionPanne {
         mv.addObject("liste",listc);
         return mv;
     }
+
+    @RequestMapping("ConsulterConstat")
+    public ModelAndView consulterconstat(Integer id,HttpSession session) throws ParseException {
+
+        ModelAndView mv = new ModelAndView();
+        Constat con= cm.findById(id);
+        System.out.println("le id de status est "+con.getPanne());
+        System.out.println("le id de constat et"+con.getId());
+        LocalDate date1 = LocalDate.parse(con.getPanne().getRessource().getDate_liv());
+        LocalDate date2 =java.time.LocalDate.now();
+        long g =con.getPanne().getRessource().getDuree_gar();
+        int a=date1.getMonthValue();
+        System.out.println("le garentie"+date1);
+        date1=date1.plusYears(g);
+
+        System.out.println("le garentie"+g);
+        int b=java.time.LocalDate.now().getMonthValue();
+        int c=a-b;
+        if(date1.compareTo(date2) < 0){
+        System.out.println("garantie ");
+        System.out.println("le garentie"+date1);
+        System.out.println("le garentie"+date2);
+        }
+        int result =date1.compareTo(date2);
+
+        mv.setViewName("responsable/consulterconstat.jsp");
+        mv.addObject("constat",con);
+        mv.addObject("result",result);
+        return mv;
+    }
+
+    @RequestMapping("reparer")
+    public String reparer(Integer id) {
+        Constat con= cm.findById(id);
+        con.getPanne().setStatus(2);
+
+     return "redirect:ListerConstat";
+    }
+    @RequestMapping("garantie")
+    public String garantie(Integer id) {
+        Constat con= cm.findById(id);
+        con.getPanne().setStatus(2);
+        cm.delete(con.getId());
+
+        return "redirect:ListerConstat";
+    }
+
 
 }
