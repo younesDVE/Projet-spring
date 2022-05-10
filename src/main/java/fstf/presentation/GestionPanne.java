@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.jws.WebParam;
+import javax.print.attribute.ResolutionSyntax;
 import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -177,6 +178,9 @@ public class GestionPanne {
     public String reparer(Integer id) {
         Constat con= cm.findById(id);
         con.getPanne().setStatus(2);
+        cm.save(con);
+        cm.delete(con.getId());
+        System.out.println("le pppanne et"+con.getPanne());
 
      return "redirect:ListerConstat";
     }
@@ -185,6 +189,10 @@ public class GestionPanne {
         Constat con= cm.findById(id);
         con.getPanne().setStatus(2);
         cm.delete(con.getId());
+
+
+        System.out.println("le id de constat et"+con.getId());
+        System.out.println("le panne et"+con.getPanne());
 
         return "redirect:ListerConstat";
     }

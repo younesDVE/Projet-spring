@@ -96,6 +96,8 @@ public class Panne {
                 ", frequence='" + frequence + '\'' +
                 ", ordre='" + ordre + '\'' +
                 ", explication='" + explication + '\'' +
+                ", status=" + status +
+                ", ressource=" + ressource +
                 '}';
     }
 }
